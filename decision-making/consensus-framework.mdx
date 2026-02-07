@@ -88,11 +88,15 @@ The consensus mechanism determines the conversation plan:
 
 ### Real-Time Branching
 
-During conversation, when patient response triggers a branch decision:
+During conversation, branching decisions use a simplified version of the consensus mechanism optimized for voice latency constraints:
 1. Patient response parsed and entities extracted
-2. Each expert model independently evaluates possible next actions
-3. Consensus determines optimal branch within latency budget
-4. If no action achieves sufficient consensus, system falls back to safe default
+2. Pre-computed branching rules (generated during pre-call planning) handle the majority of decisions with sub-second latency
+3. For unanticipated responses that fall outside pre-computed plans, a lightweight evaluation determines the optimal branch within the latency budget
+4. If no action achieves sufficient confidence, the system falls back to a safe default or escalates to staff
+
+<Note>
+The full multi-model consensus mechanism runs during pre-call planning (where the 3-second latency budget allows it). Real-time branching primarily relies on the pre-computed conversation plan, with lightweight fallback evaluation for edge cases.
+</Note>
 
 ### Escalation Decisions
 

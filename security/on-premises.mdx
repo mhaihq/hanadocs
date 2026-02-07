@@ -20,6 +20,10 @@ On-premises infrastructure plays a critical role in enhancing safety for healthc
 - Voice processing (speech recognition and synthesis) can run locally for complete data isolation
 - Supports encrypted inference for secure data processing during model execution
 
+<Note>
+On-premises deployment requires dedicated infrastructure provisioning. The reasoning engine requires GPU-equipped servers (minimum specifications provided during scoping). Voice processing adds additional compute requirements. HANA provides a detailed hardware requirements guide and works with your IT team to validate infrastructure readiness before deployment. Typical on-premises deployments take 6-10 weeks including infrastructure setup, compared to 2-4 weeks for cloud deployments.
+</Note>
+
 ### Operational Control & Auditability
 
 - Providers retain full control over data access, retention, and key management, with the ability to define deletion schedules or revoke access instantly
@@ -31,7 +35,7 @@ On-premises infrastructure plays a critical role in enhancing safety for healthc
 
 **Deployment Components:**
 - Container orchestration (Kubernetes) running on organization-managed servers
-- GPU nodes for reasoning engine inference (can use organization's existing GPU infrastructure)
+- GPU nodes for reasoning engine inference (HANA provides minimum hardware specifications; organizations may need to provision dedicated GPU infrastructure)
 - CPU nodes for real-time conversation engine
 - Local telephony integration with organization's existing phone system (SIP trunking)
 - Local database and storage for all conversation data
@@ -42,7 +46,7 @@ On-premises infrastructure plays a critical role in enhancing safety for healthc
 - Integration with organization's existing network security infrastructure
 - Compatible with organization's VPN and firewall configurations
 
-**Hybrid Options:**
-- On-premises data processing with cloud-based model updates (no PHI leaves premises)
+**Hybrid Options (recommended for most on-prem customers):**
+- On-premises data processing with cloud-based model updates (no PHI leaves premises) — most common configuration
 - Conversation execution on-premises with anonymized analytics sent to cloud for quality monitoring
-- Full air-gapped deployment for maximum isolation
+- Full air-gapped deployment for maximum isolation — requires additional infrastructure planning and limits model update frequency
