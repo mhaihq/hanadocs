@@ -45,6 +45,8 @@ description: "ROI projections combining self-hosted architecture, self-correctin
 
 ## Healthcare Organization ROI
 
+The projections below are modeled estimates for a mid-size primary care organization. Actual results vary based on patient population, EHR integration depth, staff workflows, and protocol configuration. We recommend validating assumptions with your operations team during the pilot phase.
+
 ### Direct Cost Savings (Mid-Size Primary Care, 50 Physicians)
 
 | Current State | Annual Cost |
@@ -55,23 +57,29 @@ description: "ROI projections combining self-hosted architecture, self-correctin
 | Incomplete intake rework and re-calls | $95,000 |
 | **Total** | **$965,000** |
 
-| With HANA | Annual Cost |
+| With HANA (Conservative Estimate) | Annual Cost |
 |-----------|-------------|
 | HANA platform fee | $180,000 |
-| Reduced care coordinator need (4 → 2 FTEs) | $120,000 |
-| Reduced MA phone time (30% → 10%) | $60,000 |
-| Reduced no-show rate (8% → 3.5%) | $200,000 |
-| Reduced intake rework | $25,000 |
-| **Total** | **$585,000** |
+| Reduced care coordinator need (4 → 3 FTEs) | $180,000 |
+| Reduced MA phone time (30% → 15%) | $90,000 |
+| Reduced no-show rate (8% → 5%) | $280,000 |
+| Reduced intake rework | $45,000 |
+| **Total** | **$775,000** |
 
-**Net annual savings: $380,000 | ROI: 211% | Payback: 5.7 months**
+**Conservative net annual savings: $190,000 | ROI: 106% | Payback: ~11 months**
+
+Organizations with higher outreach volume and mature EHR integration typically see stronger results. Pilot deployments allow you to validate these projections against your specific workflows before scaling.
 
 ### Revenue Uplift
 
-| Revenue Driver | Mechanism | Estimated Annual Impact |
+| Revenue Driver | Mechanism | Estimated Annual Impact (Range) |
 |---------------|-----------|------------------------|
-| Reduced no-shows | Proactive outreach + rescheduling | $250,000 |
-| BHI/CCM billing | Automated qualifying conversations for CMS codes | $180,000 |
-| Care gap closure | Outreach for preventive screenings | $120,000 |
-| Patient retention | Higher engagement reduces churn | $95,000 |
-| **Total** | | **$645,000** |
+| Reduced no-shows | Proactive outreach + rescheduling | $150,000 – $250,000 |
+| BHI/CCM documentation | Structured documentation supporting CMS billing review | $100,000 – $180,000 |
+| Care gap closure | Outreach for preventive screenings | $80,000 – $120,000 |
+| Patient retention | Higher engagement reduces churn | $50,000 – $95,000 |
+| **Total** | | **$380,000 – $645,000** |
+
+<Note>
+BHI/CCM revenue estimates assume clinical staff validate billing eligibility per CMS guidelines. Revenue impact depends on payer mix, patient panel size, and billing compliance workflow. These are not guaranteed outcomes.
+</Note>

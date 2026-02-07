@@ -1,13 +1,13 @@
 ---
 title: "Eval Based System"
-description: "HANA's adaptive reasoning models: multi-tiered processing, speculative decoding, infrastructure cost analysis, and model performance optimization."
+description: "HANA's adaptive reasoning models: multi-tiered processing, candidate generation and verification, infrastructure cost analysis, and model performance optimization."
 ---
 
 ## Overview
 
 HANA's Adaptive Reasoning Models represent a breakthrough in large-scale inference optimization and real-time clinical decision support. Built on our service architecture, these models dynamically adjust their reasoning processes based on clinical context, computational constraints, and performance requirements.
 
-The system leverages multi-tiered processing, speculative decoding, and self-calibration to deliver high performance while maintaining accuracy and reliability in production voice conversations.
+The system leverages multi-tiered processing, candidate generation and verification, and self-calibration to deliver high performance while maintaining accuracy and reliability in production voice conversations.
 
 ## Core Architecture
 
@@ -26,14 +26,14 @@ HANA's adaptive reasoning system employs a sophisticated multi-tiered architectu
 - GPU-accelerated reasoning engine for pre-call planning and complex clinical analysis
 - Memory-efficient design with minimal RAM per active conversation session
 
-### Speculative Decoding Architecture
+### Candidate Generation and Verification
 
-HANA's conversation engine uses speculative decoding for faster response generation:
+HANA's conversation engine uses a generate-and-verify architecture for response selection:
 
-- Smaller, faster model generates candidate continuations for the next conversation turn
-- Larger reasoning model verifies and selects optimal predictions against clinical protocol constraints
-- Custom optimization for the verification process to minimize latency
-- Self-calibration system adjusts selection weights during runtime based on conversation context
+- A fast, lightweight model generates candidate responses for the next conversation turn
+- The reasoning engine evaluates and ranks candidates against clinical protocol constraints, entity grounding, and safety rules
+- The highest-scoring candidate is selected and delivered via streaming voice synthesis
+- Self-calibration adjusts selection weights during runtime based on conversation context
 
 **Generation and Verification Pipeline:**
 - Fast model generates multiple candidate responses based on current conversation state
@@ -94,8 +94,8 @@ In the field of compute optimization, model routing, caching strategies, and bat
 **Reasoning Engine:**
 - Pre-call plan generation: < 3 seconds per patient
 - Post-call analysis: < 30 seconds per conversation
-- Clinical entity extraction accuracy: > 97%
-- Protocol compliance rate: > 97%
+- Clinical entity extraction accuracy: > 97% (measured across internal evaluation datasets; validated per protocol during onboarding)
+- Protocol compliance rate: > 97% (measured via automated post-call evaluation pipeline)
 
 ### Performance Optimization Strategies
 

@@ -1,6 +1,6 @@
 ---
 title: "EHR Integration"
-description: "Connect HANA to 150+ Electronic Health Record systems. Bidirectional data flow — read patient context, write clinical notes back."
+description: "Connect HANA to Electronic Health Record systems via direct API or middleware partners. Bidirectional data flow — read patient context, write clinical notes back."
 ---
 
 ## How EHR Integration Works
@@ -43,23 +43,23 @@ Your EHR API ←→ HANA Connector ←→ HANA Reasoning Engine
 
 HANA maintains pre-built connectors for supported EHRs. For systems with standard REST/FHIR APIs, we build custom connectors during onboarding.
 
-### 2. Integration Middleware (Redox, Catagon)
+### 2. Integration Middleware (Redox, Keragon)
 
-For EHR systems without open APIs, or when you need a standard interoperability layer.
+For EHR systems without open APIs, or when you need a standard interoperability layer. The breadth of EHR connectivity here comes from our middleware partners — Redox and Keragon maintain pre-built connections to hundreds of EHR systems, and HANA integrates through their platforms.
 
 | Middleware | EHRs Supported | Setup Time | Notes |
 |-----------|---------------|------------|-------|
-| Redox | Athena, Epic, Cerner, 200+ | 2-4 weeks | HL7 FHIR, production-ready |
-| Catagon | Multiple EU/US EHRs | 2-4 weeks | Zapier-like EHR connector |
+| Redox | Athena, Epic, Cerner, 200+ via Redox network | 2-4 weeks | HL7 FHIR, production-ready |
+| Keragon | Multiple EU/US EHRs via Keragon platform | 2-4 weeks | Healthcare automation platform with EHR connectors |
 
 **How it works:**
 
 ```
-Your EHR ←→ Redox/Catagon ←→ HANA Connector ←→ HANA Reasoning Engine
+Your EHR ←→ Redox/Keragon ←→ HANA Connector ←→ HANA Reasoning Engine
 ```
 
 <Note>
-Middleware platforms like Redox carry their own licensing costs (typically $15K-25K platform fee + per-connector fees). HANA works with your existing Redox subscription if you have one.
+Middleware platforms carry their own licensing costs. Redox typically charges a platform fee + per-connector fees. Keragon has its own pricing model. HANA works with your existing middleware subscription if you have one, or we can help you get set up.
 </Note>
 
 ### 3. HANA Dashboard (No EHR Required)
@@ -209,7 +209,7 @@ Use this checklist when planning your EHR integration:
 
 <Steps>
   <Step title="Identify EHR and API Availability">
-    What EHR does the organization use? Does it have an open API? Is Redox/Catagon already in use?
+    What EHR does the organization use? Does it have an open API? Is Redox/Keragon already in use?
   </Step>
   <Step title="Define Data Scope">
     Which patient data fields should HANA read? What should HANA write back? Map the specific fields.

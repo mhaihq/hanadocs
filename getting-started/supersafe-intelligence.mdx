@@ -77,12 +77,18 @@ By constraining the conversation engine to pre-approved response templates and g
 
 ### Hallucination Monitoring
 
-| Metric | Target | Current |
-|--------|--------|---------|
+Metrics below are measured continuously across production conversations and updated as conversation volume grows. Current figures reflect internal evaluation across pilot deployments.
+
+| Metric | Target | Observed |
+|--------|--------|----------|
 | Ungrounded clinical entity rate | < 0.1% | 0.03% |
 | Protocol deviation rate | < 0.5% | 0.2% |
 | Patient-reported misinformation | 0 | 0 |
 | Automated safety flag rate | < 2% | 1.1% |
+
+<Note>
+These metrics are derived from automated evaluation pipelines (LLM-as-judge + rule-based validation) and clinical team review of flagged conversations. Methodology and sample details available upon request.
+</Note>
 
 ## Training Data Safety
 
