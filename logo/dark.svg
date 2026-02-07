@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 80" fill="none">
+  <defs>
+    <linearGradient id="wave1-dark" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#3B6A9E"/>
+      <stop offset="100%" stop-color="#4B7CB0"/>
+    </linearGradient>
+    <linearGradient id="wave2-dark" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#6A9FCD"/>
+      <stop offset="100%" stop-color="#7BADD8"/>
+    </linearGradient>
+    <linearGradient id="wave3-dark" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#A0CDE6"/>
+      <stop offset="100%" stop-color="#BDE0F0"/>
+    </linearGradient>
+  </defs>
+  <!-- Waveform icon: 3 overlapping organic wave shapes (brighter for dark bg) -->
+  <g transform="translate(8, 6)">
+    <!-- Wave 1 (medium blue, leftmost) -->
+    <path d="M18 0C25 0 30 10 30 20C30 30 25 35 22 40C19 45 18 48 18 55C18 62 22 68 18 68C14 68 8 58 5 48C2 38 0 30 0 20C0 10 8 0 18 0Z" fill="url(#wave1-dark)" opacity="0.95"/>
+    <!-- Wave 2 (lighter blue, middle) -->
+    <path d="M30 0C37 0 42 10 42 20C42 30 37 35 34 40C31 45 30 48 30 55C30 62 34 68 30 68C26 68 20 58 17 48C14 38 12 30 12 20C12 10 20 0 30 0Z" fill="url(#wave2-dark)" opacity="0.85"/>
+    <!-- Wave 3 (lightest blue, rightmost) -->
+    <path d="M42 0C49 0 54 10 54 20C54 30 49 35 46 40C43 45 42 48 42 55C42 62 46 68 42 68C38 68 32 58 29 48C26 38 24 30 24 20C24 10 32 0 42 0Z" fill="url(#wave3-dark)" opacity="0.75"/>
+  </g>
+  <!-- "hana" text in white for dark backgrounds -->
+  <text x="82" y="56" font-family="Georgia, 'Times New Roman', serif" font-size="44" font-weight="400" fill="#FFFFFF" letter-spacing="1">hana</text>
+</svg>
