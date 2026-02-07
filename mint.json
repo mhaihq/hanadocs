@@ -52,6 +52,7 @@
         "reasoning-models/self-hosted-architecture",
         "reasoning-models/eval-based-system",
         "reasoning-models/self-correcting-models",
+        "reasoning-models/vocal-intelligence",
         "reasoning-models/lrms-as-judge",
         "reasoning-models/towards-roi"
       ]
@@ -76,7 +77,7 @@
     {
       "group": "Better Decision Making",
       "pages": [
-        "decision-making/consensus-framework",
+        "decision-making/deliberation-framework",
         "decision-making/autonomous-agents"
       ]
     },

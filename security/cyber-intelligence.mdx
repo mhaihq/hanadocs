@@ -99,6 +99,42 @@ HANA maintains a comprehensive security controls framework across multiple domai
 - Disaster recovery planning
 - Change management processes
 
+## EU AI Act Compliance
+
+The European Union's AI Act classifies AI systems that affect access to healthcare as **high-risk applications**. This includes AI systems involved in patient triage, clinical decision support, prior authorization, and any scenario where an AI output could influence a patient's access to care.
+
+### Current Status
+
+HANA is actively working toward full EU AI Act compliance for healthcare deployments in Europe:
+
+- **Risk classification assessment**: Mapping HANA's capabilities against the AI Act's high-risk categories to determine registration requirements per use case
+- **Conformity assessment preparation**: Documenting technical architecture, safety measures, and quality management systems required for high-risk AI registration
+- **EU database registration**: Preparing for registration in the EU database of high-risk AI systems as required before production deployment with EU patients
+
+### Use Case-Specific Classification
+
+Not all HANA deployments carry the same regulatory classification under the AI Act:
+
+| Use Case | AI Act Classification | Registration Required |
+|----------|----------------------|----------------------|
+| Appointment reminders, scheduling | Lower risk | No |
+| Pre-operative preparation follow-up | Lower risk | No |
+| Clinical screening (PHQ-9, GAD-7) | Potentially high risk | Under assessment |
+| Prior authorization / insurance verification | High risk | Yes |
+| Clinical decision support influencing care access | High risk | Yes |
+
+### What This Means for EU Customers
+
+- **Non-high-risk use cases** (appointment management, preparation reminders, general outreach) can proceed under standard GDPR compliance
+- **High-risk use cases** (anything involving clinical decisions that affect care access) require HANA to be registered in the EU AI Act database before production deployment — including POC/pilot phases with live patients
+- HANA works with EU customers during scoping to classify the intended use case and determine the regulatory pathway
+
+<Note>
+For EU healthcare organizations evaluating HANA: we recommend discussing your intended use case during the scoping phase so we can provide a clear regulatory timeline. Some use cases can proceed immediately; others require registration that we are actively pursuing.
+</Note>
+
+---
+
 ## Contact Information
 
 For security inquiries or compliance requests:

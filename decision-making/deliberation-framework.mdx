@@ -1,23 +1,23 @@
 ---
-title: "Consensus Framework"
-description: "Multi-model consensus architecture integrating specialized expert models for enhanced clinical decision support through collaborative deliberation."
+title: "Deliberation Framework"
+description: "Multi-model deliberation architecture integrating specialized expert models for clinical conversation planning through collaborative reasoning."
 ---
 
 ## Overview
 
-The Consensus Mechanism Framework integrates multiple specialized clinical "expert" models, enhancing decision support through collaborative deliberation. It operates by orchestrating inputs from distinct, configurable clinical specialty models to synthesize a unified, well-supported clinical decision.
+HANA's Deliberation Framework integrates multiple specialized clinical "expert" models to produce high-quality conversation plans through collaborative reasoning. Rather than relying on a single model to make clinical decisions, the framework orchestrates inputs from distinct, configurable specialty models — each evaluating the conversation plan from its domain perspective — to synthesize a unified, well-supported clinical approach.
 
-This document details the Consensus Mechanism's modular architecture, expert model integration, and its evaluation methodologies.
+The deliberation framework is the reasoning engine behind HANA's pre-call planning. It determines what questions to ask, in what order, with what branching logic, and when to escalate — before the conversation begins. This planning step is what enables the real-time conversation engine to operate within tight latency constraints while maintaining clinical accuracy.
 
 ## Core Architecture
 
 ### System Design
 
-The Consensus Mechanism comprises:
+The Deliberation Framework comprises:
 
 - **Triage Model**: Identifies the clinical task type and selects appropriate specialty models for the conversation context
 - **Expert Model Block**: Consists of independent expert agents that evaluate tasks from specialized perspectives, each generating probability distributions over potential actions
-- **Consensus Aggregation Model**: Synthesizes expert inputs into a final decision, leveraging nuanced evaluation and probabilistic weighting
+- **Deliberation Aggregation Model**: Synthesizes expert inputs into a final decision, leveraging nuanced evaluation and probabilistic weighting
 
 ### Expert-Based Decomposition
 
@@ -43,7 +43,7 @@ A_final = LLM_consensus(O_final)
 
 ### Probability Weighting
 
-To reflect clinical uncertainty, the Consensus Mechanism aggregates expert probabilities using a Weighted Log Opinion Pool (WLOP):
+To reflect clinical uncertainty, the Deliberation Framework aggregates expert probabilities using a Weighted Log Opinion Pool (WLOP):
 
 ```
 P_combined(X) = Σ wᵢ · log pᵢ(X)
@@ -75,32 +75,32 @@ P_final(X) = exp(BoostedScore(X)) / Σⱼ exp(BoostedScore(Xⱼ))
 
 The final decision integrates each expert's analysis through structured deliberation, examining not only aggregated probabilities but also expert reasoning and justification.
 
-The Consensus Model explicitly factors nuanced clinical reasoning, allowing a sophisticated, clinically coherent final recommendation beyond numerical probability alone.
+The Deliberation Model explicitly factors nuanced clinical reasoning, allowing a sophisticated, clinically coherent final recommendation beyond numerical probability alone.
 
 ## Application to HANA Voice Conversations
 
 ### Pre-Call Planning
 
-The consensus mechanism determines the conversation plan:
+The deliberation framework determines the conversation plan:
 1. Triage model analyzes patient profile and identifies clinical task type
 2. Expert ensemble evaluates proposed question set, ordering, and branching logic
 3. Consensus aggregation produces final conversation plan with confidence-weighted questions
 
 ### Real-Time Branching
 
-During conversation, branching decisions use a simplified version of the consensus mechanism optimized for voice latency constraints:
+During conversation, branching decisions use a simplified version of the deliberation framework optimized for voice latency constraints:
 1. Patient response parsed and entities extracted
 2. Pre-computed branching rules (generated during pre-call planning) handle the majority of decisions with sub-second latency
 3. For unanticipated responses that fall outside pre-computed plans, a lightweight evaluation determines the optimal branch within the latency budget
 4. If no action achieves sufficient confidence, the system falls back to a safe default or escalates to staff
 
 <Note>
-The full multi-model consensus mechanism runs during pre-call planning (where the 3-second latency budget allows it). Real-time branching primarily relies on the pre-computed conversation plan, with lightweight fallback evaluation for edge cases.
+The full multi-model deliberation framework runs during pre-call planning (where the 3-second latency budget allows it). Real-time branching primarily relies on the pre-computed conversation plan, with lightweight fallback evaluation for edge cases.
 </Note>
 
 ### Escalation Decisions
 
-Consensus governs escalation from AI to human:
+Deliberation governs escalation from AI to human:
 - Clinical escalation: patient reports symptoms requiring immediate attention
 - Emotional escalation: patient distress exceeds safe handling capacity
 - Complexity escalation: conversation diverged beyond protocol coverage
@@ -122,9 +122,9 @@ Consensus governs escalation from AI to human:
 
 ## Modular Framework
 
-The Consensus Mechanism is modular and adaptable:
+The Deliberation Framework is modular and adaptable:
 
 - **Expert Model Blocks**: Independently configurable expert models specialized in distinct clinical domains — allows targeted updates without disrupting overall system
 - **Flexible Triage System**: Dynamically routes clinical queries to appropriate expert models based on case specifics
-- **Dynamic Consensus Aggregation**: Aggregates expert outputs using weighted consensus, customizable for accuracy, efficiency, or latency optimization
+- **Dynamic Deliberation Aggregation**: Aggregates expert outputs using weighted consensus, customizable for accuracy, efficiency, or latency optimization
 - **Real-Time Integration**: Modular structure facilitates real-time adjustments based on clinician feedback and evolving clinical guidelines

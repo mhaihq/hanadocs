@@ -90,6 +90,49 @@ Metrics below are measured continuously across production conversations and upda
 These metrics are derived from automated evaluation pipelines (LLM-as-judge + rule-based validation) and clinical team review of flagged conversations. Methodology and sample details available upon request.
 </Note>
 
+## Observational Safety Agents
+
+Beyond the conversation engine's built-in safety constraints, HANA deploys independent observational agents that monitor every conversation in parallel. These agents are architecturally separate from the conversation engine — they observe but do not generate responses — providing an independent safety layer.
+
+### Why Rule-Based, Not LLM-Based
+
+A critical design decision: HANA's observational safety agents are **rule-based, not LLM-powered**. This is intentional:
+
+- **Full traceability**: Every risk flag traces back to the exact words, phrases, or patterns that triggered it. No black-box reasoning in safety-critical decisions.
+- **Deterministic behavior**: Given the same input, the safety agent always produces the same output. No stochastic variation in risk detection.
+- **Auditability**: Clinicians and compliance teams can inspect exactly why a conversation was flagged, what threshold was triggered, and what protocol was activated.
+- **Regulatory defensibility**: In clinical safety, you need to explain *why* a decision was made. Rule-based systems provide this by construction.
+
+### Risk Detection Architecture
+
+**Direct Signal Detection:**
+- Explicit self-harm language, suicidal ideation expressions, and crisis indicators
+- Medication misuse signals (e.g., "I took too many pills")
+- Acute distress indicators requiring immediate clinical intervention
+
+**Associative Signal Detection:**
+- Compound signals that individually seem benign but together indicate risk — for example, expressions of hopelessness combined with questions about methods or locations that suggest harmful intent
+- Context-dependent risk patterns developed from clinical literature and clinical team collaboration
+- These associative rules were developed over months of work with behavioral health clinicians across diverse patient populations
+
+**Vocal + Content Fusion:**
+- When vocal intelligence detects prosodic stress markers and the rule-based agent detects risk-adjacent language, the combined signal is escalated even if neither alone would trigger
+- Text-prosody discrepancy (patient says "I'm fine" with flat affect and vocal tremor) generates a clinical review flag
+
+### Escalation Protocols
+
+Each healthcare organization configures escalation protocols during onboarding:
+
+- **24/7 clinical coverage**: If the organization has round-the-clock staff, the agent can initiate a warm transfer to a clinician
+- **Emergency services**: For organizations without 24/7 coverage, the agent follows a defined protocol — acknowledges its limitations, provides emergency contact information, and notifies the clinical team
+- **Clinical team notification**: All risk flags generate structured notifications with the triggering signals, conversation context, and patient information
+
+<Note>
+HANA's safety agents are guardrails, not clinical tools. They detect risk signals and activate clinic-defined protocols. They do not provide clinical assessment, diagnosis, or therapeutic intervention. The clinical response is always the responsibility of the healthcare organization's care team.
+</Note>
+
+---
+
 ## Training Data Safety
 
 To further ensure the safety and compliance of our clinical AI systems, we apply rigorous controls to the data used in training and evaluation.
