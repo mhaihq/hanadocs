@@ -1,0 +1,107 @@
+---
+title: "Vocal Intelligence"
+description: "Prosodic analysis, vocal biomarker detection, and adaptive conversation dynamics derived from clinical voice research in behavioral health populations."
+---
+
+## Overview
+
+HANA's Vocal Intelligence engine goes beyond speech-to-text transcription. Built on research into vocal biomarkers for mood disorders — including longitudinal studies with bipolar, PTSD, and depression populations — the system analyzes *how* patients speak, not just *what* they say, to detect emotional state, engagement level, and potential risk signals in real time.
+
+This capability is architecturally distinct from the conversation engine. Vocal intelligence operates as a parallel analysis layer that processes raw audio features alongside the transcribed conversation, enriching the context available to both the real-time conversation engine and the post-call evaluation pipeline.
+
+## Core Architecture
+
+### Dual-Stream Processing
+
+Every voice conversation produces two parallel data streams:
+
+```
+Raw Audio → Vocal Intelligence Engine → Prosodic Features, Biomarker Signals
+                                          ↓
+Transcription → Conversation Engine → Clinical Data Extraction, Protocol Logic
+                                          ↓
+                              Merged Analysis → Risk Scoring, Engagement Metrics
+```
+
+**Audio Feature Extraction:**
+- Fundamental frequency (F0) tracking for pitch contour analysis
+- Speech rate variability and pause pattern detection
+- Energy envelope analysis for vocal intensity dynamics
+- Spectral features for voice quality assessment (breathiness, tension, tremor)
+- Turn-taking dynamics between patient and agent
+
+**Transcription-Level Analysis:**
+- Lexical sentiment and emotional valence
+- Clinical keyword detection for protocol-relevant content
+- Semantic coherence across conversation turns
+- Response latency patterns
+
+### Baseline-Deviation Detection
+
+Vocal intelligence is most powerful over longitudinal patient relationships. Rather than attempting absolute emotion classification from a single call — which is unreliable — the system builds a personalized vocal baseline for each patient and detects *deviations* from their normal patterns.
+
+**How Baseline Building Works:**
+1. First 2-3 conversations establish the patient's vocal profile: typical pitch range, speech rate, energy levels, pause patterns
+2. Each subsequent conversation is compared against this baseline
+3. Statistically significant deviations trigger clinical signals
+4. Baseline continuously updates with a decay function to account for natural changes over time
+
+**Why Baseline-Deviation > Absolute Classification:**
+- Absolute emotion detection from voice has high error rates across demographics, languages, and cultural contexts
+- A patient's "normal" varies enormously — what sounds flat for one person is baseline for another
+- Clinical value comes from detecting *change*, not labeling a single state
+- This approach reduces demographic bias because each patient is their own reference
+
+### Clinical Signal Detection
+
+**Engagement Signals:**
+- Declining speech energy across calls may indicate reduced motivation or treatment fatigue
+- Shortened responses and increased pause duration can signal disengagement
+- Changes in turn-taking patterns (e.g., patient becomes less interactive) flag engagement risk
+
+**Mood and Affect Signals:**
+- Pitch flattening (reduced F0 variability) is associated with depressive episodes in clinical literature
+- Increased speech rate with elevated pitch can indicate anxiety or agitation
+- Vocal tremor and irregular pause patterns may signal distress
+
+**Discrepancy Detection:**
+- When a patient says "I'm doing great" but vocal features indicate flat affect, low energy, or stress markers, the system flags a text-prosody discrepancy
+- These discrepancies are surfaced to the clinical team as potential indicators that warrant follow-up
+- The conversation agent can adapt its approach in real time — e.g., asking a follow-up question with more empathy, or noting the discrepancy for the clinician
+
+## Research Foundation
+
+HANA's vocal intelligence capabilities originated from a clinical research project analyzing voice patterns in bipolar disorder patients to detect transitions between depressive and manic episodes. Key insights from this work:
+
+- Voice-based features can detect mood state transitions before patients self-report changes
+- Longitudinal tracking (baseline-deviation) significantly outperforms single-session emotion classification
+- Prosodic features are more reliable than lexical sentiment for detecting clinical state changes
+- Combining prosodic analysis with conversational content produces the strongest clinical signals
+
+This research has since been extended to populations including PTSD, chronic pain, palliative care, and geriatric patients — each with specific vocal patterns associated with clinical deterioration or improvement.
+
+## Integration with Safety Guardrails
+
+Vocal intelligence feeds directly into HANA's observational safety agents:
+
+- **Risk escalation**: When vocal features combined with conversation content suggest self-harm risk, the safety agent triggers the clinic's escalation protocol
+- **Engagement monitoring**: When vocal patterns suggest a patient is disengaging from a care program, the system can adjust outreach strategy (timing, channel, conversation approach)
+- **Clinical notes enrichment**: Post-call clinical notes include vocal engagement indicators, giving clinicians richer context than a transcript alone
+
+## Privacy and Compliance
+
+- Raw audio features are extracted and processed in real time; raw audio is not stored beyond the conversation recording retention period
+- Vocal analysis data is classified as PHI and subject to the same encryption, access control, and audit requirements as all patient data
+- Patients are informed that conversations are recorded and analyzed as part of their care program
+- Vocal profiles are tied to patient records and subject to the same deletion and portability requirements
+- On-premises deployments process all vocal analysis locally — no audio data leaves the organization's infrastructure
+
+## Performance Characteristics
+
+| Metric | Value |
+|--------|-------|
+| Feature extraction latency | < 200ms (parallel to transcription) |
+| Baseline establishment | 2-3 conversations |
+| Discrepancy detection accuracy | Validated against clinical reviewer agreement |
+| Demographic bias | Reduced through per-patient baseline approach |
+| Supported languages | Feature extraction is language-agnostic; clinical validation strongest in English, Spanish, Italian |

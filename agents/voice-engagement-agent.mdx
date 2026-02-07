@@ -20,6 +20,7 @@ Features:
 
 ### Outbound Retention & Engagement
 
+- **SMS-First Outreach**: Outbound engagement always begins with a text message — never an unsolicited cold call. The patient receives context about why HANA is reaching out and schedules a call at their preferred time. This approach consistently produces higher answer rates and patient satisfaction compared to cold outbound calls.
 - **Automated Detection**: Identifies patients requiring outreach by querying EHR data, waitlists, and scheduling systems
 - **Goal Persistence**: Remembers outreach objectives and brings them up dynamically regardless of when the conversation occurs
 - **Multi-channel Coordination**: Outreach spans voice and SMS with consistent context across channels
@@ -39,23 +40,61 @@ Features:
 - Referral completion tracking
 
 ### Chronic Care Management
-- Monthly CCM check-in calls (CMS billable)
+- Monthly CCM check-in calls with documentation structured for CMS billing review
 - Medication adherence monitoring
 - Symptom tracking and trend detection
 - Care plan review and updates
 
 ### Behavioral Health Integration
-- BHI qualifying conversations (CMS billable)
+- BHI conversations with documentation structured for CMS billing review
 - PHQ-9, GAD-7 administration through natural conversation
 - Crisis screening with appropriate escalation
 - Treatment adherence follow-up
+
+### Patient Retention & Health Coaching
+
+The biggest challenge in longitudinal patient programs (chronic care, behavioral health, post-procedure follow-up) is dropout. Patients stop answering calls after the first few weeks because they don't see personal value in the interaction.
+
+HANA addresses this with an engagement architecture that gives patients reasons to stay in the program:
+
+- **Accountability Companion**: Between clinical monitoring calls, the agent supports patients in working toward personal health goals (exercise targets, dietary changes, medication routines). These goals are set collaboratively during conversations and tracked across interactions.
+- **Patient Diary**: Patients can access a summary of their own conversation history, health goals, and progress. This transparency gives patients ownership of their data and a reason to continue engaging.
+- **Adaptive Engagement Timing**: The system learns when each patient is most likely to engage (morning vs. evening, weekday vs. weekend) and adjusts outreach timing accordingly.
+- **Channel Switching**: If a patient stops responding to calls, the system can switch to SMS check-ins or adjust frequency — adapting to the patient's engagement pattern rather than forcing a rigid schedule.
+
+---
+
+## Longitudinal Patient Memory
+
+HANA's engagement model is built on the principle that every conversation should be better than the last. The system maintains a longitudinal patient profile that grows richer with each interaction:
+
+**Clinical Context (from EHR):**
+- Diagnoses, medications, care plans, appointment history
+- Pulled fresh before each conversation to ensure current data
+
+**Interaction Context (built by HANA):**
+- Communication preferences: voice vs. SMS, preferred time, language, pacing
+- Conversation history: what was discussed, what goals were set, what was flagged
+- Behavioral patterns: how the patient responds to different question styles, when they disengage
+- Vocal baseline: prosodic profile for deviation detection (see Vocal Intelligence)
+
+**Engagement Intelligence:**
+- Which outreach strategies work for this patient (SMS first? Direct call? Morning vs. evening?)
+- Dropout risk scoring based on engagement patterns
+- Personalized conversation pacing and complexity level
+
+<Note>
+Patient memory is not a parallel data store competing with the organization's EHR or CRM. Clinical data always comes from the organization's systems. HANA's memory layer captures *interaction intelligence* — how to communicate with each patient most effectively — and feeds clinical data back to the EHR via write-back.
+</Note>
+
+---
 
 ## Technical Specifications
 
 ### Voice Quality
 - Natural conversational speech synthesis with dynamic prosody
 - Multiple voice personas configurable per organization
-- 30+ language support with clinical-grade accuracy
+- Multi-language support: clinically validated for English, Spanish, Italian, French, and German; additional languages available with varying levels of clinical coverage through our voice synthesis and recognition providers
 - Automatic language detection and switching
 
 ### Latency

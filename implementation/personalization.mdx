@@ -27,13 +27,33 @@ HANA's voice engagement framework provides extensive customization capabilities 
 
 ### Individual Patient Preferences
 
-- **Language**: Primary language detection and preference storage with 30+ language support
+- **Language**: Primary language detection and preference storage; clinically validated for English, Spanish, Italian, French, and German with additional languages available at varying coverage levels
 - **Communication Style**: Adjustable pacing, detail level, and formality based on patient profile
 - **Contact Preferences**: Best time to call, preferred channel (voice, SMS), callback scheduling
 - **Personal Templates**: Patient-specific conversation adjustments that persist across interactions
 - **Learning Adaptation**: System adapts to individual communication patterns over time
 
 ## Personalization Infrastructure
+
+### Longitudinal Memory Architecture
+
+HANA builds a patient interaction profile that grows richer with every conversation. This is distinct from EHR data — the organization's clinical systems remain the source of truth for medical information. HANA's memory layer captures *interaction intelligence*: how to communicate with each patient most effectively.
+
+**Memory Layers:**
+
+| Layer | Source | Purpose |
+|-------|--------|---------|
+| Clinical context | EHR (pulled fresh before each call) | Diagnoses, medications, care plans, appointments |
+| Communication preferences | Learned from interactions | Channel preference, best time to call, pacing, formality level |
+| Conversation history | Built by HANA | Prior topics discussed, goals set, issues flagged |
+| Behavioral patterns | Observed over time | Response style, engagement triggers, dropout risk signals |
+| Vocal baseline | Vocal intelligence engine | Prosodic profile for longitudinal deviation detection |
+
+**How Memory Improves Conversations:**
+- A patient who prefers texts over calls gets SMS outreach first
+- A patient with lower health literacy gets simpler language and more confirmation checks
+- A chronic care patient's third monthly check-in references what was discussed in the first two
+- A patient who expressed frustration about insurance in a prior call gets a more empathetic tone when the topic comes up again
 
 ### Patient Profile Management
 
@@ -46,6 +66,7 @@ HANA's voice engagement framework provides extensive customization capabilities 
 
 - **Guided Setup**: Interactive onboarding for initial organization and protocol personalization
 - **Continuous Refinement**: Ongoing opportunities to adjust preferences based on conversation outcomes
+- **Clinician Input Integration**: Clinical staff can annotate patient profiles with notes about communication preferences, sensitivities, or context that enriches future conversations — similar to how care teams pass notes between shifts
 - **Preference Analytics**: Insights into which personalization options improve engagement and completion rates
 - **Protocol Sharing**: Ability to share effective protocol configurations within organizations
 
@@ -56,3 +77,4 @@ HANA's voice engagement framework provides extensive customization capabilities 
 - **Fallback Handling**: Graceful defaults when personalization data is unavailable
 - **Performance Optimization**: Minimal impact on conversation response latency regardless of personalization level
 - **Privacy Compliance**: All preference data encrypted, auditable, and deletable per patient request
+- **Data Ownership**: Patient interaction data belongs to the healthcare organization. HANA processes and stores it per the organization's retention policies and provides full export capability.

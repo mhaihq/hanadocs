@@ -31,13 +31,13 @@ The system combines constrained generation, reference-free evaluation, and conti
 - Long-term context validation across patient's conversation history
 - Quality assurance against evaluation datasets and clinical standards
 
-### Speculative Correction Framework
+### Candidate Verification Framework
 
 **Generation and Verification Pipeline:**
 - Conversation engine generates candidate responses for each turn
-- Reasoning engine evaluates and selects optimal response against protocol constraints
-- Custom optimization for the verification process to minimize latency impact
-- Self-calibration adjusts correction thresholds in real-time based on conversation context
+- Reasoning engine evaluates and ranks candidates against protocol constraints, selecting the optimal response
+- Verification is optimized for minimal latency impact on the conversation flow
+- Self-calibration adjusts correction thresholds based on conversation context and historical accuracy
 
 **Correction Strategies:**
 - Immediate corrections for detected errors during response generation (block and regenerate)
